@@ -1,0 +1,21 @@
+class Solution(object):
+    def reverse(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        neg = False
+        if x<0: neg = True; x = -x # record negativity
+
+        div = 1
+        while x/div>=10: div *= 10 # find length of x
+        
+        newX = 0
+        while x:
+            newX += x%10*div
+            x /= 10
+            div /= 10
+        if neg==True: newX = -newX
+        if newX>2147483647 or newX<-2147483648: # limits of 32-bit integer
+            return 0
+        else: return newX
